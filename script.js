@@ -97,5 +97,64 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         })
     }
-})
+    
+    if (btnSair) {
+        btnSair.addEventListener("click", function() {
+            sessionStorage.removeItem("logado")
 
+            alert("Você saiu da sua conta com segurança. Até logo! 🐾")
+
+            window.location.href = "index.html"
+        })
+    }
+
+    if (botaoRedirecionar) {
+        botaoRedirecionar.addEventListener("click", function () {
+            window.location.href = "encontrar-pets.html"
+        })
+    }
+
+    if (inputBusca) {
+        inputBusca.addEventListener("input", function(event) {
+    const texto = event.target.value.toLowerCase()
+    cartoesPets.forEach(function(cartao) {
+        const titulo = cartao.querySelector('h3').innerText.toLowerCase()
+        const descricao = cartao.querySelector('p').innerText.toLowerCase()
+        if (titulo.includes(texto) || descricao.includes(texto)) {
+            cartao.style.display = 'block'
+        } else {
+            cartao.style.display = 'none'
+        }
+        })
+    })
+    
+}
+    botoesPatinha.forEach(function(botao) {
+        botao.addEventListener("click", function(){
+            botao.classList.toggle('btn-patinha-inativo')
+        })
+    })
+    
+   cartoesPets.forEach(function(cartao) {
+        cartao.addEventListener("click", function(event) {
+            if (event.target.closest('.btn-patinha')) {
+                return; // Ignora se clicar na patinha
+            }
+
+            if (usuarioLogado) {
+                // Pega o nome e a foto do cartão específico que foi clicado
+                const nomePet = cartao.querySelector('h3').innerText;
+                const fotoPet = cartao.querySelector('img').getAttribute('src');
+                
+                // Redireciona mandando o nome e a foto pelo link (URL)
+                window.location.href = "detalhes-pets.html?nome=" + encodeURIComponent(nomePet) + "&foto=" + encodeURIComponent(fotoPet);
+            } else {
+                alert("Você precisa fazer login para ver os detalhes do pet!");
+                modalLogin.style.display = "flex";
+            }
+        });
+    });
+
+});
+
+    
