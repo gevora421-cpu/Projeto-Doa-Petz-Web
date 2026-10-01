@@ -50,7 +50,7 @@
            
             <!-- Adicionamos um ID (imagem-pet) para o JavaScript conseguir trocar a foto -->
             <div class="detalhe-imagem">
-                <img src="./Assets/luna2.webp" alt="Foto do Pet" id="imagem-pet">
+                <img src="./Assets/luna.png" alt="Foto do Pet" id="imagem-pet">
             </div>
 
 
@@ -83,3 +83,65 @@
             </div>
         </div>
     </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const parametros = new URLSearchParams(window.location.search)
+    const nomeDoPet = parametros.get("nome")
+    const fotoDoPet = parametros.get("foto")    
+    const descricoesPets = {
+"SPOT": "Spot é um Labrador muito dócil e amigável de 08 anos. Adora correr no parque, é super paciente com crianças e está procurando uma família amorosa para curtir a terceira idade.",
+"LUNA": "Luna é uma gata da raça Bengal, com 11 meses de idade. Extremamente curiosa, cheia de energia e adora brincar com bolinhas de corda.",
+"GEORGIA": "Georgia é uma Beagle de 4 anos muito charmosa. Adora um bom passeio ao ar livre e é uma excelente companheira para quem gosta de caminhar.",
+"MINGAU": "Mingau é um gato SRD de 2 anos, muito calmo, carinhoso e que adora tirar longos cochilos no sofá de casa.",
+"ALAN": "Alan é um Xenomorpho do filme Alien com apenas 5 dias de vida, ama brincar, adora de atenção, não gosta de outros seres vivos. É uma otima companhia que você não vai poder aproveitar. OBS: Não adote.",
+"FLOQUINHO": "Floquinho é um pequeno reptil com 71 anos, possui otimas habilidades para te manter distraido enquanto cuida dele, mas atenção, ele costuma fazer muita bagunça. Seus vizinhos vão amar!",
+"TESLA": "Tesla é a companhia perfeita para quem gosta de uma amizade silenciosa. Sendo uma enguia életrica com 10 anos, você pode apreciar a presença dela sem tocar.",
+"SAMIRA": "Samira é uma naja de 06 anos, peçonhenta, mas tem potencial para ser uma presença tranquila em sua casa se você ganhar sua confiança",
+"JULIANA": "Juliana é uma fofa lontra de apenas 01 ano de idade que ama atenção, carinho e vai tirar todas suas preocupações em segundos!",
+"CÉSAR": "Com seu nome inspirado em Planeta dos Macacos, César é um chimpanzé com 15 anos que possui um intelecto quase semelhante ao seu. Ele será um amigo incrivel para você que foi treinado e aprendeu libras.",
+"DENTINHA": "Não come há 2 meses... por sua conta e risco",
+"GARAU": "Uma ave gigante que promete ser um otimo vigia para você. Não há garantia de que ele não seja agressivo com você"
+    }
+
+       if (nomeDoPet) {
+                const tituloH1 = document.getElementById("nome-pet");
+                if (tituloH1) {
+                    tituloH1.innerText = nomeDoPet;
+                }
+
+                const textoDescricao = document.getElementById("descricao-pet")
+                if (textoDescricao) {
+                    const nomeMaiusculo = nomeDoPet.toUpperCase();
+                    if (descricoesPets[nomeMaiusculo]) {
+                        textoDescricao.innerText = descricoesPets[nomeMaiusculo];
+                    } else {
+                        textoDescricao.innerText = nomeDoPet + "é um amiguinho muito especial à procura de um lar!"
+                    }
+                }
+            }
+
+            if (fotoDoPet) {
+                const imagemTag = document.getElementById("imagem-pet")
+                if (imagemTag) {
+                    imagemTag.src = fotoDoPet
+                }
+            }
+            const btnAdotar = document.getElementById('btn-adotar')
+            const btnVerMais = document.getElementById('btn-ver-mais')
+
+
+            if (btnAdotar) {
+                btnAdotar.addEventListener('click', function () {
+         alert('Parabéns! Sua solicitação de adoção foi iniciada. Entraremos em contato! 🐾')
+                })
+            }
+            if (btnVerMais) {
+                btnVerMais.addEventListener('click', function () {
+    alert('Aqui você pode exibir informações adicionais de saúde, vacinas e histórico do pet!')
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>
